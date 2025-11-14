@@ -1,19 +1,27 @@
-name: Ping La Poste
+name: Test Scraper La Poste
 
-# Déclenchement sur cron toutes les heures
 on:
+  workflow_dispatch:    # lancer manuellement
   schedule:
-    - cron: '35 * * * *'  # toutes les heures à l’heure pile
-  workflow_dispatch:     # permet de lancer manuellement depuis GitHub
+    - cron: '40 * * * *'  # toutes les heures
 
 jobs:
-  curl_job:
+  scraping_job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Ping La Poste
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
         run: |
-          echo "Début du job: $(date)"
-          status_code=$(curl -s -o /dev/null -w "%{http_code}" https://www.laposte.fr/professionnel/la-carte-pro)
-          echo "Code HTTP retourné: $status_code"
-          echo "Fin du job: $(date)"
+          pip install requests beautifulsoup4
+
+      - name: Run scraper
+        run: |
+          python main.py
