@@ -1,0 +1,19 @@
+name: Ping La Poste
+
+# Déclenchement sur cron toutes les heures
+on:
+  schedule:
+    - cron: '35 * * * *'  # toutes les heures à l’heure pile
+  workflow_dispatch:     # permet de lancer manuellement depuis GitHub
+
+jobs:
+  curl_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping La Poste
+        run: |
+          echo "Début du job: $(date)"
+          status_code=$(curl -s -o /dev/null -w "%{http_code}" https://www.laposte.fr/professionnel/la-carte-pro)
+          echo "Code HTTP retourné: $status_code"
+          echo "Fin du job: $(date)"
