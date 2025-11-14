@@ -2,8 +2,6 @@ name: Test Scraper La Poste
 
 on:
   workflow_dispatch:    # lancer manuellement
-  schedule:
-    - cron: '40 * * * *'  # toutes les heures
 
 jobs:
   scraping_job:

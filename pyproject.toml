@@ -1,0 +1,17 @@
+[project]
+name = "scraping-test"
+version = "0.0.1"
+description = "Test"
+readme = "README.md"
+requires-python = ">= 3.11"
+dependencies = [
+    "openai==1.78.1",
+    "pandas==2.2.3",
+    "beautifulsoup4==4.13.4",
+    "requests==2.32.4",
+    "openpyxl==3.1.5",
+    "python-dotenv==1.1.0",
+    "pyyaml>=6.0.2",
+    "matplotlib>=3.10.3",
+    "ipykernel>=6.29.5",
+]
